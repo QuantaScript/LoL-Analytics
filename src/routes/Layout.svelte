@@ -8,8 +8,8 @@
 
 <div class="flex flex-column w-1/5 h-full">
 	<div class="w-full h-full bg-slate-950 flex flex-col">	
-		<div class="sidebar-header outline-slate-800">
-			<img src="./TeamIcons/diamant.webp" alt="Diamant Logo">
+		<div class="sidebar-header outline-slate-800 flex">
+			<img src="./TeamIcons/diamant.webp" alt="Diamant Logo" class="max-w-full max-h-full">
 		</div>
 		<div class="sidebar-main text outline-slate-800">
 			<Sidebar>
