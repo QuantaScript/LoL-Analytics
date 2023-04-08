@@ -1,5 +1,3 @@
-//import sql from "./db.js";
-
 async function test(){
     try {
         let response = await fetch("http://localhost:5434/series").then((x) => x.json());
@@ -13,8 +11,7 @@ async function test(){
     }
     catch{
         console.log("fuck")
-    }
-        
+    }    
 };
 
 export function GetRecentGames() {
@@ -29,7 +26,3 @@ export function GetRecentGames() {
     test();
     return Games;
 };
-
-
-
-  

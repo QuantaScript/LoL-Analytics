@@ -26,7 +26,7 @@
 						</SidebarDropdownWrapper>
 						<SidebarDropdownWrapper label="Scouting" btnClass = "flex items-center p-2 w-full text-base font-bold text-2xl text-red-700 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
 							<SidebarDropdownWrapper label="EBL" btnClass = "flex items-center p-2 w-full text-base font-bold text-xl text-red-700 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-								<SidebarItem label="Partizan Esports" href='' aClass = "flex items-center p-2 text-base text-lg font-bold  text-red-700 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"/>
+								<SidebarItem label="Partizan Esports" href='/officials/vods?team=partizans' aClass = "flex items-center p-2 text-base text-lg font-bold  text-red-700 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"/>
 								<SidebarItem label="Crvena Zvezda" href='' aClass = "flex items-center p-2 text-base text-lg font-bold  text-red-700 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"/>
 								<SidebarItem label="Cyber Wolves" href='' aClass = "flex items-center p-2 text-base text-lg font-bold  text-red-700 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"/>
 								<SidebarItem label="Valiance" href='' aClass = "flex items-center p-2 text-base text-lg font-bold  text-red-700 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700"/>

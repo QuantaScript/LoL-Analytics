@@ -250,8 +250,9 @@
 	import "../app.css";
 	import {GetRecentGames} from './Homepage';
 
-	var RecentGames = GetRecentGames();
+	let RecentGames = GetRecentGames();
 
-
-
+	//onMount(async () => {
+	//	get
+	//});
 </script>
