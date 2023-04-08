@@ -27,6 +27,8 @@
 	"type": "module",
 	"dependencies": {
 		"fontawesome-svelte": "^2.0.1",
+		"pg": "^8.10.0",
+		"postgres": "^3.3.4",
 		"svelte-awesome-icons": "^0.4.3"
 	}
 }
