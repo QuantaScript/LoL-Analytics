@@ -1,16 +1,16 @@
 <main class="bg-slate-800 flex h-full flex-row overflow-auto w-auto">
 	<Layout/>
-	<div class="h-full scroll flex flex-col mx-auto my-10 overflow-y-auto">
+	<div class="h-full scroll flex flex-col mx-10 my-10 w-5/6 scrollbar-hide">
 		<div class="flex flex-col mb-4">
 			<div class="text-3xl font-bold text-red-700">
 				Recent Results
 			</div>
 			<div class = "flex flex-row h-40">
-				<a href="" class="bg-slate-950 w-1/5 h-30 mr-3 mt-3 mb-3 hover:bg-gray-100 rounded-lg">
+				<a href="" class="bg-slate-950 w-1/5 h-30 mr-3 mt-3 mb-3 hover:bg-gray-100 rounded-lg flex">
 					<div class="flex h-full" id="recent-results">
 						<div class="flex flex-col w-1/3" id="image">
 							<div class="w-full h-4/5">
-								<img src="./TeamIcons/{RecentGames[0]["team"]}.webp" alt="" class="w-40 h-full object-none object-right-bottom">
+								<img src="./TeamIcons/{RecentGames[0]["team"]}.webp" alt="" class="w-40 rounded-lg h-full object-none object-right-bottom">
 							</div>
 							<div class="w-full h-1/5 text-red-700 font-bold ml-2">
 								{RecentGames[0]["type"]}
@@ -31,11 +31,11 @@
 						</div>
 					</div>
 				</a>
-				<a href="" class="bg-slate-950 w-1/5 h-30 m-3 hover:bg-gray-100 rounded-lg">
+				<a href="" class="bg-slate-950 w-1/5 h-30 m-3 hover:bg-gray-100 rounded-lg flex">
 					<div class="flex h-full" id="recent-results">
 						<div class="flex flex-col w-1/3" id="image">
 							<div class="w-full h-4/5">
-								<img src="./TeamIcons/{RecentGames[1]["team"]}.webp" alt="" class="w-40 h-full object-none object-right-bottom">
+								<img src="./TeamIcons/{RecentGames[1]["team"]}.webp" alt="" class="w-40 rounded-lg h-full object-none object-right-bottom">
 							</div>
 							<div class="w-full h-1/5 text-red-700 font-bold ml-2">
 								{RecentGames[1]["type"]}
@@ -56,11 +56,11 @@
 						</div>
 					</div>
 				</a>
-				<a href="" class="bg-slate-950 w-1/5 h-30 m-3 hover:bg-gray-100 rounded-lg">
+				<a href="" class="bg-slate-950 w-1/5 h-30 m-3 hover:bg-gray-100 rounded-lg flex">
 					<div class="flex h-full" id="recent-results">
 						<div class="flex flex-col w-1/3" id="image">
 							<div class="w-full h-4/5">
-								<img src="./TeamIcons/{RecentGames[2]["team"]}.webp" alt="" class="w-40 h-full object-none object-right-bottom">
+								<img src="./TeamIcons/{RecentGames[2]["team"]}.webp" alt="" class="w-40 rounded-lg h-full object-none object-right-bottom">
 							</div>
 							<div class="w-full h-1/5 text-red-700 font-bold ml-2">
 								{RecentGames[2]["type"]}
@@ -81,11 +81,11 @@
 						</div>
 					</div>
 				</a>
-				<a href="" class="bg-slate-950 w-1/5 h-30 m-3 hover:bg-gray-100 rounded-lg">
+				<a href="" class="bg-slate-950 w-1/5 h-30 m-3 hover:bg-gray-100 rounded-lg flex">
 					<div class="flex h-full" id="recent-results">
 						<div class="flex flex-col w-1/3" id="image">
 							<div class="w-full h-4/5">
-								<img src="./TeamIcons/{RecentGames[3]["team"]}.webp" alt="" class="w-40 h-full object-none object-right-bottom">
+								<img src="./TeamIcons/{RecentGames[3]["team"]}.webp" alt="" class="w-40 rounded-lg h-full object-none object-right-bottom">
 							</div>
 							<div class="w-full h-1/5 text-red-700 font-bold ml-2">
 								{RecentGames[3]["type"]}
@@ -106,11 +106,11 @@
 						</div>
 					</div>
 				</a>
-				<a href="" class="bg-slate-950 w-1/5 h-30 m-3 hover:bg-gray-100 rounded-lg">
+				<a href="" class="bg-slate-950 w-1/5 h-30 m-3 hover:bg-gray-100 rounded-lg flex">
 					<div class="flex h-full" id="recent-results">
 						<div class="flex flex-col w-1/3" id="image">
 							<div class="w-full h-4/5">
-								<img src="./TeamIcons/{RecentGames[4]["team"]}.webp" alt="" class="w-40 h-full object-none object-right-bottom">
+								<img src="./TeamIcons/{RecentGames[4]["team"]}.webp" alt="" class="w-40 rounded-lg h-full object-none object-right-bottom">
 							</div>
 							<div class="w-full h-1/5 text-red-700 font-bold ml-2">
 								{RecentGames[4]["type"]}
@@ -132,7 +132,6 @@
 					</div>
 				</a>
 			</div>
-
 		</div>
 		<div class="text-3xl font-bold text-red-700 mb-8">
 			Scrims
@@ -145,7 +144,7 @@
 							</div>
 						</div>
 						<div class="w-2/3 h-full flex">
-							<div class="h-fit m-auto text-center">
+							<div class="h-fit m-auto text-center text-lg">
 								Winrate
 							</div>
 						</div>
@@ -157,7 +156,7 @@
 							</div>
 						</div>
 						<div class="w-2/3 h-full flex">
-							<div class="h-fit m-auto text-center">
+							<div class="h-fit m-auto text-center text-lg">
 								First Dragon Rate
 							</div>
 						</div>
@@ -169,7 +168,7 @@
 							</div>
 						</div>
 						<div class="w-2/3 h-full flex">
-							<div class="h-fit m-auto text-center">
+							<div class="h-fit m-auto text-center text-lg">
 								Dragons Per Game
 							</div>
 						</div>
@@ -181,7 +180,7 @@
 							</div>
 						</div>
 						<div class="w-2/3 h-full flex">
-							<div class="h-fit m-auto text-center">
+							<div class="h-fit m-auto text-center text-lg">
 								First Herald Rate
 							</div>
 						</div>
@@ -193,7 +192,7 @@
 							</div>
 						</div>
 						<div class="w-2/3 h-full flex">
-							<div class="h-fit m-auto text-center">
+							<div class="h-fit m-auto text-center text-lg">
 								Heralds Per Game
 							</div>
 						</div>
@@ -205,7 +204,7 @@
 							</div>
 						</div>
 						<div class="w-3/5 h-full flex">
-							<div class="h-fit m-auto text-center">
+							<div class="h-fit m-auto text-center text-lg">
 								GD @15
 							</div>
 						</div>
@@ -219,8 +218,7 @@
 		</div>
 		<div class="text-3xl font-bold text-red-700">
 			Solo Queue
-		</div>
-		
+		</div>	
 	</div>
 </main>
 
@@ -242,6 +240,16 @@
 		transition-duration: 0.5s;
 		transition-timing-function: cubic-bezier(.1,.67,.31,.97);
 	}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;  
+}
 
 </style>
 
