@@ -23,6 +23,6 @@ export function GetRecentGames() {
     //for (let i = 0; i < 5; i++){
     //    var image = document.getElementById("myImg").src
     //};
-    test();
+    //test();
     return Games;
 };
