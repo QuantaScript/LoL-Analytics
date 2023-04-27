@@ -1,143 +1,63 @@
+<script>
+	import Layout from './Layout.svelte'
+	import "../app.css";
+	import {GetRecentGames} from './Homepage';
+	import { onMount } from 'svelte';
+
+	let RecentGames = [];
+
+	onMount(async () => {
+		RecentGames = await GetRecentGames();
+	});
+</script>
+
 <main class="bg-slate-800 flex h-full flex-row overflow-auto w-auto">
 	<Layout/>
-	<div class="h-full scroll flex flex-col mx-10 my-10 w-5/6 scrollbar-hide">
+	<div class="h-full scroll flex flex-col px-4 my-10 w-5/6 scrollbar-hide">
 		<div class="flex flex-col mb-4">
 			<div class="text-3xl font-bold text-red-700">
 				Recent Results
 			</div>
 			<div class = "flex flex-row h-40">
-				<a href="" class="bg-slate-950 w-1/5 h-30 mr-3 mt-3 mb-3 hover:bg-gray-100 rounded-lg flex">
-					<div class="flex h-full" id="recent-results">
-						<div class="flex flex-col w-1/3" id="image">
-							<div class="w-full h-4/5">
-								<img src="./TeamIcons/{RecentGames[0]["team"]}.webp" alt="" class="w-40 rounded-lg h-full object-none object-right-bottom">
+				{#each RecentGames as Game}
+					<a href="/Series?id={Game["id"]}&game=1" class="bg-slate-950 w-1/6 h-30 mr-3 mt-3 mb-3 hover:bg-gray-100 rounded-lg flex">
+						<div class="flex h-full w-full" id="recent-results">
+							<div class="flex flex-col w-1/3" id="image">
+								<div class="w-full h-4/5">
+									{#if (Game["team"] != "")}
+										<img src="./TeamIcons/{Game["team"]}.webp" alt="" class="w-40 rounded-lg h-full object-none object-right-bottom">
+									{:else}
+										<p></p>
+									{/if}
+								</div>
+								<div class="w-full h-1/5 text-red-700 font-bold ml-2">
+									{Game["type"]}
+								</div>
 							</div>
-							<div class="w-full h-1/5 text-red-700 font-bold ml-2">
-								{RecentGames[0]["type"]}
-							</div>
-						</div>
-						<div class="w-2/3 h-full flex flex-col" id="text">
-							<div class = "h-2/5 w-full text-red-700 font-bold text-right text-5xl pr-2">
-								{#if (RecentGames[0]["wins"] > RecentGames[0]["losses"])} Win
-								{:else} Loss
-								{/if}
-							</div>
-							<div class = "h-1/5 w-full text-red-700 font-bold text-right pr-2">
-								{RecentGames[0]["wins"]}:{RecentGames[0]["losses"]}
-							</div>
-							<div class = "h-1/5 w-full text-red-700 font-bold text-right pr-2">
-								{RecentGames[0]["date"]}
-							</div>										
-						</div>
-					</div>
-				</a>
-				<a href="" class="bg-slate-950 w-1/5 h-30 m-3 hover:bg-gray-100 rounded-lg flex">
-					<div class="flex h-full" id="recent-results">
-						<div class="flex flex-col w-1/3" id="image">
-							<div class="w-full h-4/5">
-								<img src="./TeamIcons/{RecentGames[1]["team"]}.webp" alt="" class="w-40 rounded-lg h-full object-none object-right-bottom">
-							</div>
-							<div class="w-full h-1/5 text-red-700 font-bold ml-2">
-								{RecentGames[1]["type"]}
+							<div class="w-2/3 h-full flex flex-col" id="text">
+								<div class = "h-2/5 w-full text-red-700 font-bold text-right text-5xl pr-1">
+									{#if (Game["wins"] > Game["losses"])} Win
+									{:else if (Game["wins"] < Game["losses"])} Loss
+									{:else} Draw
+									{/if}
+								</div>
+								<div class = "h-1/5 w-full text-red-700 font-bold text-right pr-2">
+									{Game["wins"]}:{Game["losses"]}
+								</div>
+								<div class = "h-1/5 w-full text-red-700 font-bold text-right pr-2">
+									{Game["date"]}
+								</div>										
 							</div>
 						</div>
-						<div class="w-2/3 h-full flex flex-col" id="text">
-							<div class = "h-2/5 w-full text-red-700 font-bold text-right text-5xl pr-2">
-								{#if (RecentGames[1]["wins"] > RecentGames[1]["losses"])} Win
-								{:else} Loss
-								{/if}
-							</div>
-							<div class = "h-1/5 w-full text-red-700 font-bold text-right pr-2">
-								{RecentGames[1]["wins"]}:{RecentGames[1]["losses"]}
-							</div>
-							<div class = "h-1/5 w-full text-red-700 font-bold text-right pr-2">
-								{RecentGames[1]["date"]}
-							</div>										
-						</div>
-					</div>
-				</a>
-				<a href="" class="bg-slate-950 w-1/5 h-30 m-3 hover:bg-gray-100 rounded-lg flex">
-					<div class="flex h-full" id="recent-results">
-						<div class="flex flex-col w-1/3" id="image">
-							<div class="w-full h-4/5">
-								<img src="./TeamIcons/{RecentGames[2]["team"]}.webp" alt="" class="w-40 rounded-lg h-full object-none object-right-bottom">
-							</div>
-							<div class="w-full h-1/5 text-red-700 font-bold ml-2">
-								{RecentGames[2]["type"]}
-							</div>
-						</div>
-						<div class="w-2/3 h-full flex flex-col" id="text">
-							<div class = "h-2/5 w-full text-red-700 font-bold text-right text-5xl pr-2">
-								{#if (RecentGames[2]["wins"] > RecentGames[2]["losses"])} Win
-								{:else} Loss
-								{/if}
-							</div>
-							<div class = "h-1/5 w-full text-red-700 font-bold text-right pr-2">
-								{RecentGames[2]["wins"]}:{RecentGames[2]["losses"]}
-							</div>
-							<div class = "h-1/5 w-full text-red-700 font-bold text-right pr-2">
-								{RecentGames[2]["date"]}
-							</div>										
-						</div>
-					</div>
-				</a>
-				<a href="" class="bg-slate-950 w-1/5 h-30 m-3 hover:bg-gray-100 rounded-lg flex">
-					<div class="flex h-full" id="recent-results">
-						<div class="flex flex-col w-1/3" id="image">
-							<div class="w-full h-4/5">
-								<img src="./TeamIcons/{RecentGames[3]["team"]}.webp" alt="" class="w-40 rounded-lg h-full object-none object-right-bottom">
-							</div>
-							<div class="w-full h-1/5 text-red-700 font-bold ml-2">
-								{RecentGames[3]["type"]}
-							</div>
-						</div>
-						<div class="w-2/3 h-full flex flex-col" id="text">
-							<div class = "h-2/5 w-full text-red-700 font-bold text-right text-5xl pr-2">
-								{#if (RecentGames[3]["wins"] > RecentGames[3]["losses"])} Win
-								{:else} Loss
-								{/if}
-							</div>
-							<div class = "h-1/5 w-full text-red-700 font-bold text-right pr-2">
-								{RecentGames[3]["wins"]}:{RecentGames[3]["losses"]}
-							</div>
-							<div class = "h-1/5 w-full text-red-700 font-bold text-right pr-2">
-								{RecentGames[3]["date"]}
-							</div>										
-						</div>
-					</div>
-				</a>
-				<a href="" class="bg-slate-950 w-1/5 h-30 m-3 hover:bg-gray-100 rounded-lg flex">
-					<div class="flex h-full" id="recent-results">
-						<div class="flex flex-col w-1/3" id="image">
-							<div class="w-full h-4/5">
-								<img src="./TeamIcons/{RecentGames[4]["team"]}.webp" alt="" class="w-40 rounded-lg h-full object-none object-right-bottom">
-							</div>
-							<div class="w-full h-1/5 text-red-700 font-bold ml-2">
-								{RecentGames[4]["type"]}
-							</div>
-						</div>
-						<div class="w-2/3 h-full flex flex-col" id="text">
-							<div class = "h-2/5 w-full text-red-700 font-bold text-right text-5xl pr-2">
-								{#if (RecentGames[4]["wins"] > RecentGames[4]["losses"])} Win
-								{:else} Loss
-								{/if}
-							</div>
-							<div class = "h-1/5 w-full text-red-700 font-bold text-right pr-2">
-								{RecentGames[4]["wins"]}:{RecentGames[4]["losses"]}
-							</div>
-							<div class = "h-1/5 w-full text-red-700 font-bold text-right pr-2">
-								{RecentGames[4]["date"]}
-							</div>										
-						</div>
-					</div>
-				</a>
-			</div>
+					</a>
+				{/each}
+			</div>			
 		</div>
 		<div class="text-3xl font-bold text-red-700 mb-8">
 			Scrims
 			<div class = "flex flex-col w-full">
 				<div class="flex flex-row w-full h-20 mt-2">
-					<div class="flex flex-row bg-slate-950 h-full w-1/6 rounded-lg mr-4 mb-4 text-xl flex-row align-middle divide-solid divide-x-2 divide-slate-800">
+					<div class="flex flex-row bg-slate-950 h-full w-1/6 rounded-lg mr-4 mb-4 text-xl align-middle divide-solid divide-x-2 divide-slate-800">
 						<div class="w-1/3 h-full flex">
 							<div class="h-fit m-auto text-center">
 								100%
@@ -149,7 +69,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="flex flex-row bg-slate-950 h-full w-1/6 rounded-lg mx-4 mb-4 text-xl flex-row divide-solid divide-x-2 divide-slate-800">
+					<div class="flex flex-row bg-slate-950 h-full w-1/6 rounded-lg mx-4 mb-4 text-xl divide-solid divide-x-2 divide-slate-800">
 						<div class="w-1/3 h-full flex">
 							<div class="h-fit m-auto text-center">
 								100%
@@ -161,7 +81,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="flex flex-row bg-slate-950 h-full w-1/6 rounded-lg mx-4 mb-4 text-xl flex-row divide-solid divide-x-2 divide-slate-800">
+					<div class="flex flex-row bg-slate-950 h-full w-1/6 rounded-lg mx-4 mb-4 text-xl divide-solid divide-x-2 divide-slate-800">
 						<div class="w-1/3 h-full flex">
 							<div class="h-fit m-auto text-center">
 								1.5
@@ -173,7 +93,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="flex flex-row bg-slate-950 h-full w-1/6 rounded-lg mx-4 mb-4 text-xl flex-row divide-solid divide-x-2 divide-slate-800">
+					<div class="flex flex-row bg-slate-950 h-full w-1/6 rounded-lg mx-4 mb-4 text-xl divide-solid divide-x-2 divide-slate-800">
 						<div class="w-1/3 h-full flex">
 							<div class="h-fit m-auto text-center">
 								100%
@@ -185,7 +105,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="flex flex-row bg-slate-950 h-full w-1/6 rounded-lg mx-4 mb-4 text-xl flex-row divide-solid divide-x-2 divide-slate-800">
+					<div class="flex flex-row bg-slate-950 h-full w-1/6 rounded-lg mx-4 mb-4 text-xl divide-solid divide-x-2 divide-slate-800">
 						<div class="w-1/3 h-full flex">
 							<div class="h-fit m-auto text-center">
 								1.5
@@ -197,7 +117,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="flex flex-row bg-slate-950 h-full w-1/6 rounded-lg mx-4 mb-4 text-xl flex-row divide-solid divide-x-2 divide-slate-800">
+					<div class="flex bg-slate-950 h-full w-1/6 rounded-lg mx-4 mb-4 text-xl flex-row divide-solid divide-x-2 divide-slate-800">
 						<div class="w-2/5 h-full flex">
 							<div class="h-fit m-auto text-center">
 								-1533
@@ -252,15 +172,3 @@
 }
 
 </style>
-
-<script>
-	import Layout from './Layout.svelte'
-	import "../app.css";
-	import {GetRecentGames} from './Homepage';
-
-	let RecentGames = GetRecentGames();
-
-	//onMount(async () => {
-	//	get
-	//});
-</script>
