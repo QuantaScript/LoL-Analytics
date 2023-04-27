@@ -1,13 +1,13 @@
 <script>
 	import Layout from './Layout.svelte'
 	import "../app.css";
-	import {GetRecentGames} from './Homepage';
+	import {load} from './Homepage';
 	import { onMount } from 'svelte';
 
 	let RecentGames = [];
 
 	onMount(async () => {
-		RecentGames = await GetRecentGames();
+		RecentGames = await load();
 	});
 </script>
 
