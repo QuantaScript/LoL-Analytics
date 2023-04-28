@@ -1,6 +1,6 @@
 
 /** @type {import('./$types').PageLoad} */
-export async function load(){
+export async function headerLoad(){
     let teams = [{"name": "", "wins": "0", "shortName": ""}, {"name": "", "wins": "0", "shortName": ""}]
 	var tournamentName = ""
 	var leagueName = ""
@@ -16,7 +16,8 @@ export async function load(){
         var gameResult = {}
         const urlParams = new URLSearchParams(queryString);
         id = urlParams.get("id")
-        let match = "http://localhost:8080/Matches?filter={%22id%22:%22"+urlParams.get("id")+"%22}"
+        var game = urlParams.get("game")
+        let match = "http://localhost:8080/Matches?filter={%22id%22:%22"+id+"%22}"
         let matchResponse = await fetch(match, 
             { 
             method: 'get', 
@@ -34,16 +35,31 @@ export async function load(){
             }
             teams[i]["wins"] = wins
         }
-        for (let j = 0; j < matchResponse[0]["games"].length; j++) {			
+        var gameId = matchResponse[0]["games"][game-1]["id"]
+        for (let j = 0; j < matchResponse[0]["games"].length; j++) {
+            resultInfo[j]["match"] = j + 1		
+            resultInfo[j]["side"] = matchResponse[0]["games"][j]["winnerSide"]	
             if (matchResponse[0]["games"][j]["winnerTeamId"] == matchResponse[0]["teams"][0]["id"]) {
-                resultInfo[j]["match"] = j + 1
                 resultInfo[j]["winner"] = 0
-                resultInfo[j]["side"] = matchResponse[0]["games"][j]["winnerSide"]
-            }		
+                if (matchResponse[0]["games"][j]["winnerSide"] == 100) {
+                    resultInfo[j]["blue"] = matchResponse[0]["teams"][0]["name"]
+                    resultInfo[j]["red"] = matchResponse[0]["teams"][1]["name"]
+                }
+                else{
+                    resultInfo[j]["blue"] = matchResponse[0]["teams"][1]["name"]
+                    resultInfo[j]["red"] = matchResponse[0]["teams"][0]["name"]
+                }
+            }	
             else{
-                resultInfo[j]["match"] = j + 1
                 resultInfo[j]["winner"] = 1
-                resultInfo[j]["side"] = matchResponse[0]["games"][j]["winnerSide"]
+                if (matchResponse[0]["games"][j]["winnerSide"] == 100) {
+                    resultInfo[j]["blue"] = matchResponse[0]["teams"][1]["name"]
+                    resultInfo[j]["red"] = matchResponse[0]["teams"][0]["name"]
+                }
+                else{
+                    resultInfo[j]["blue"] = matchResponse[0]["teams"][0]["name"]
+                    resultInfo[j]["red"] = matchResponse[0]["teams"][1]["name"]
+                }
             }
         }
         matchDateTime = new Date(matchResponse[0]["startTime"])
@@ -64,16 +80,21 @@ export async function load(){
                 'Authorization': 'Basic '+btoa("admin:secret")
             })}).then((x) => x.json());
         leagueName = leagueResponse[0]["name"]
-        let EMHQuery = "http://localhost:8080/EMH?filter={%22gameId%22:%22"+matchResponse[0]["games"][urlParams.get("game")-1]["id"]+"%22}"
-        let EMHResponse = await fetch(EMHQuery, 
-            { 
-            method: 'get', 
-            headers: new Headers({
-                'Authorization': 'Basic '+btoa("admin:secret")
-            })}).then((x) => x.json());
-        console.log(EMHResponse)
     } catch (error) {
         console.log(error)
     }
-    return [resultInfo, teams, matchDateTime, tournamentName, leagueName, id]
+    return [resultInfo, teams, matchDateTime, tournamentName, leagueName, id, gameId, game]
+}
+
+export async function overviewLoad(game){
+    let EMHQuery = "http://localhost:8080/Leaderboard?filter={%22gameId%22:%22"+game+"%22}"
+    let EMHResponse = await fetch(EMHQuery, 
+        { 
+        method: 'get', 
+        headers: new Headers({
+            'Authorization': 'Basic '+btoa("admin:secret")
+        })}).then((x) => x.json());
+    let scoreboard = []
+    scoreboard = EMHResponse
+    return scoreboard
 }
