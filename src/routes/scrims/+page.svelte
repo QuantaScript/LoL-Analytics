@@ -49,7 +49,7 @@
 						</button>
 					</div>
 				</div>
-				<div class="flex w-11/12 h-0 bg-slate-700 rounded-b-lg mx-auto duration-300 overflow-hidden" id="Match1-Scoreboard">
+				<div class="flex w-11/12 h-0 bg-slate-700 rounded-b-lg mx-auto duration-300" id="Match1-Scoreboard">
 					test
 				</div>
 			</div>

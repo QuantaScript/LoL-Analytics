@@ -36,6 +36,7 @@ export async function headerLoad(){
             teams[i]["wins"] = wins
         }
         var gameId = matchResponse[0]["games"][game-1]["id"]
+        var gameType = matchResponse[0]["matchType"]
         for (let j = 0; j < matchResponse[0]["games"].length; j++) {
             resultInfo[j]["match"] = j + 1		
             resultInfo[j]["side"] = matchResponse[0]["games"][j]["winnerSide"]	
@@ -83,7 +84,7 @@ export async function headerLoad(){
     } catch (error) {
         console.log(error)
     }
-    return [resultInfo, teams, matchDateTime, tournamentName, leagueName, id, gameId, game]
+    return [resultInfo, teams, matchDateTime, tournamentName, leagueName, id, gameId, game, matchType]
 }
 
 export async function overviewLoad(game){
@@ -96,5 +97,36 @@ export async function overviewLoad(game){
         })}).then((x) => x.json());
     let scoreboard = []
     scoreboard = EMHResponse
-    return scoreboard
+    return scoreboard[0]
 }
+
+export async function buildLoad(game, player, builds){
+    let RunesQuery = "http://localhost:8080/Runes?filter={%22gameId%22:%22"+game+"%22, %22summonerName%22:%22"+player+"%22}"
+    let RunesResponse = await fetch(RunesQuery, 
+        { 
+        method: 'get', 
+        headers: new Headers({
+            'Authorization': 'Basic '+btoa("admin:secret")
+        })}).then((x) => x.json());
+    let BuildOrderQuery = "http://localhost:8080/BuildOrder?filter={%22gameId%22:%22"+game+"%22, %22summonerName%22:%22"+player+"%22}"
+    let BuildOrderResponse= await fetch(BuildOrderQuery, 
+        { 
+        method: 'get', 
+        headers: new Headers({
+            'Authorization': 'Basic '+btoa("admin:secret")
+        })}).then((x) => x.json());
+    let SkillOrderQuery = "http://localhost:8080/SkillOrder?filter={%22gameId%22:%22"+game+"%22, %22summonerName%22:%22"+player+"%22}"
+    let SkillOrderResponse = await fetch(SkillOrderQuery, 
+        { 
+        method: 'get', 
+        headers: new Headers({
+            'Authorization': 'Basic '+btoa("admin:secret")
+        })}).then((x) => x.json());
+    let build = {"buildOrder": {}, "runes": {"statPerks": {}, "styles": {}}, "skillOrder": {}}
+    build["buildOrder"] = BuildOrderResponse[0]["buildOrder"]
+    build["skillOrder"] = SkillOrderResponse[0]["skillOrder"]
+    build["runes"]["statPerks"] = RunesResponse[0]["statPerks"]
+    build["runes"]["styles"] = RunesResponse[0]["styles"]
+    return build
+}
+
