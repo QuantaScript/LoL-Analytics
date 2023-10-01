@@ -1,4 +1,5 @@
-import { prisma } from '$lib/server/db.js'
+import { prisma } from '$lib/server/db.js';
+import { json } from '@sveltejs/kit';
 
 export async function saveDraft(draft, name, opponent){
     console.log(draft)
@@ -29,5 +30,7 @@ export async function saveDraft(draft, name, opponent){
           rp4: Draft[18][items][0],       
           rp5: Draft[19][items][0]       
         },
-      })
+      });
+
+    return json({ success: true });
 }
