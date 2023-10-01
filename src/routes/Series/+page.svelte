@@ -171,10 +171,10 @@
 							<div class="flex flex-col w-fit h-1/3 justify-center items-center text-2xl">
 							</div>
 							<div class="flex flex-col w-full h-1/3 justify-center items-end text-lg">
-								<p>{teams[0]["shortName"]}</p>
+								<p>{teams[0]["name"]}</p>
 							</div>
 							<div class="flex flex-col w-full h-1/3 justify-center items-end text-lg">
-								<p>{teams[1]["shortName"]}</p>
+								<p>{teams[1]["name"]}</p>
 							</div>
 						</div>
 						{#each resultInfo as result}

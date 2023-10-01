@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model player {
+  id      String @id @unique
+  name    String
+  top     team[] @relation("top")
+  jungle  team[] @relation("jungle")
+  mid     team[] @relation("mid")
+  bot     team[] @relation("bot")
+  support team[] @relation("support")
+}
+
+model team {
+  id        String          @id @unique
+  code      String
+  name      String          @unique
+  top       player?         @relation("top", fields: [topid], references: [id])
+  topid     String
+  jungle    player?         @relation("jungle", fields: [jungleid], references: [id])
+  jungleid  String
+  mid       player?         @relation("mid", fields: [midid], references: [id])
+  midid     String
+  bot       player?         @relation("bot", fields: [botid], references: [id])
+  botid     String
+  support   player?         @relation("support", fields: [supportid], references: [id])
+  supportid String
+  opponent  draftplanning[] @relation("opponent")
+}
+
+model draftplanning {
+  draftid    String @id @unique
+  opponent   team?  @relation("opponent", fields: [opponentid], references: [id])
+  opponentid String
+  name       String
+  bb1        String
+  bb2        String
+  bb3        String
+  bb4        String
+  bb5        String
+  rb1        String
+  rb2        String
+  rb3        String
+  rb4        String
+  rb5        String
+  bp1        String
+  bp2        String
+  bp3        String
+  bp4        String
+  bp5        String
+  rp1        String
+  rp2        String
+  rp3        String
+  rp4        String
+  rp5        String
+}

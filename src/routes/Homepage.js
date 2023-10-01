@@ -1,9 +1,11 @@
 /** @type {import('./$types').PageLoad} */
+import { PrismaClient } from '@prisma/client'
+
 
 export async function load(){
     var Games = []
     try {
-        let response = await fetch("http://localhost:8080/Matches?filter={%22teams.name%22:%22Team%20BDS%22}&sort={startTime:-1}&pagesize=6", 
+        let response = await fetch("http://localhost:8080/Matches?filter={%22teams.name%22:%22DSYRE%22}&sort={startTime:-1}&pagesize=6", 
             { 
             method: 'get', 
             headers: new Headers({
@@ -14,7 +16,7 @@ export async function load(){
             var Game = {"team": "", "wins": 0, "losses": 0, "date": "", "type": "", "id": ""}
             var OppId = "";    
             for (let j = 0; j < response[i]["teams"].length; j++) {
-                if (response[i]["teams"][j]["name"] != "Team BDS") {
+                if (response[i]["teams"][j]["name"] != "DSYRE") {
                     Game["team"] = response[i]["teams"][j]["name"].replace(" ", "_");
                     OppId = response[i]["teams"][j]["id"];
                 }

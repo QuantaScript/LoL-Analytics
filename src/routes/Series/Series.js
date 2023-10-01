@@ -84,7 +84,7 @@ export async function headerLoad(){
     } catch (error) {
         console.log(error)
     }
-    return [resultInfo, teams, matchDateTime, tournamentName, leagueName, id, gameId, game, matchType]
+    return [resultInfo, teams, matchDateTime, tournamentName, leagueName, id, gameId, game]
 }
 
 export async function overviewLoad(game){
